@@ -18,13 +18,14 @@ title="Basic system information:"
 dsu="Disk Space Utilization"
 mu="Memory Usage"
 hsu="Home Space Utilization"
+cale="Month calendar"
 bottom="@bart @carlos | SDU Robotics | Linux for Embedded Systems"
 CURRENT_TIME=$(date)
 TIMESTAMP=$(uptime)
 opt="?"
 place="Odense | Funen | Denmark"
 
-while getopts ":hac" opt; do
+while getopts ":ha" opt; do
 	case $opt in
 	       	h)
 			echo
@@ -37,44 +38,20 @@ while getopts ":hac" opt; do
 			exit 0
 			;;
 		a)
-			echo "Working on it."
-			exit 0
-			;;
-		c)
-			echo -e "$CYAN $bold Basic system information: $normal $NC"
-			echo '----------------------------------------'
-			echo 'Date:'
-			printf $PINK
-			date
-			printf $NC
-			echo '----------------------------------------'
-			echo 'Uptime and load average:'
-			printf $BLUE
-			uptime  
-			printf $NC
-			echo '----------------------------------------'
-			echo 'Logged-in users:'
-			printf $GREEN
-			who
-			printf $NC
-			echo '----------------------------------------'
-			echo 'RAM memory usage:'
-			printf $RED
-			df -h
-			printf $NC
-			echo '----------------------------------------'
-			echo 'Amount of free disk space:'
-			printf $BROWN
-			free -m
-			printf $NC
-			echo '----------------------------------------'
-			echo 'Month calendar:'
-			printf $WHITE
-			cal 
-			printf $NC
-			echo '----------------------------------------'
-			echo -e "$CYAN $bold @charlieviescas | SDU Robotics | Linux for Embedded Systems $normal $NC"
-			echo
+			echo $title | od -An -vtu1
+			echo "dare" | od -An -vtu1
+			date | od -An -vtu1
+			echo "Uptime and load average:" | od -An -vtu1
+			uptime | od -An -vtu1
+			echo "Logged-in users:" | od -An -vtu1
+			who | od -An -vtu1
+			echo "RAM memory usage:" | od -An -vtu1
+			df -h | od -An -vtu1
+			echo "Amount of free disk space" | od -An -vtu1
+			free -m | od -An -vtu1
+			echo "Month calendar" | od -An -vtu1
+			cal | od -An -vtu1
+			echo $bottom | od -An -vtu1
 			exit 0
 			;;
 	esac
@@ -90,8 +67,9 @@ echo "
 	<HEAD>
 		<TITLE>$title</TITLE>
 	</HEAD>
-	<BODY>
-		<H1>$title</H1>
+	<BODY text = "orange" bgcolor = "black">
+		<H1 align = "center">$title</H1>
+		<hr />
 		<P>$CURRENT_TIME<P>
 		<P>$TIMESTAMP</P>
 		<P>$place</P>
@@ -101,7 +79,10 @@ echo "
 		<PRE>$(free -m)</PRE>
 		<H2>$hsu</H2>
 		<PRE>$(du -sh /home/*)</PRE>
-		<H3>$bottom</H3>
+		<H2>$cale</H2>
+		<PRE>$(cal)>/PRE>
+		<hr />
+		<H3 align = "center">$bottom</H3>
 	</BODY>
 </HTML>"
 fi
