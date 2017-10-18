@@ -6,7 +6,7 @@
 
 TITLE="System Information requested by $HOSTNAME"
 RIGHT_NOW=$(date +"%x %r %Z")
-TIME_STAMP="Updated on $RIGHT_NOW by $USER"
+TIME_STAMP="Updated on $RIGHT_NOW"
 FOOTER="@bart @carlos | SDU Robotics | Linux for Embedded Systems"
 is_plain=1
 GENERAL_FORMAT="\n%40s\n\n%35s\n%s\n"
@@ -76,7 +76,7 @@ footer()
     printf "$DIVIDER_FORMAT" "$DIVIDER"
     printf "$GENERAL_FORMAT" "ABOUT" "$FOOTER" ""
   else
-    printf "$GENERAL_FORMAT" "<footer><pre>" "$FOOTER" "</pre></footer>"
+    printf "$GENERAL_FORMAT" "<footer><pre><h1>" "$FOOTER" "</h1></pre></footer>"
   fi
 }
 
