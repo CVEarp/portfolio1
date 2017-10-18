@@ -108,6 +108,7 @@ write_page()
   $(ram_space)
   $(home_space)
   $(footer)
+
 _EOF2_
   else
     cat <<- _EOF_
@@ -127,7 +128,8 @@ _EOF2_
         $(home_space)
         $(footer)
         </body>
-      </html> 
+      </html>
+ 
 _EOF_
   fi
 }
@@ -148,10 +150,11 @@ usage()
 while getopts ":hp" opt; do
 	case $opt in
       h)
-  			usage
-  			exit 0
-  		  ;;
-      p)is_plain=0
+        usage
+        exit 0
+        ;;
+      p)
+        is_plain=0
         ;;
 	esac
 done
