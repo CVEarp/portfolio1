@@ -15,6 +15,7 @@ bold=$(tput bold)
 normal=$(tput sgr0)
 
 title="Basic system information:"
+usr="Logged-in users:"
 dsu="Disk Space Utilization"
 mu="Memory Usage"
 hsu="Home Space Utilization"
@@ -69,6 +70,8 @@ echo "
 	<BODY text = "orange" bgcolor = "black">
 		<H1 align = "center">$title</H1>
 		<hr />
+		<P>$usr</P>
+		<P>$(who)</P>
 		<P>$CURRENT_TIME<P>
 		<P>$TIMESTAMP</P>
 		<P>$place</P>
@@ -79,9 +82,12 @@ echo "
 		<H2>$hsu</H2>
 		<PRE>$(du -sh /home/*)</PRE>
 		<H2>$cale</H2>
-		<PRE>$(cal)>/PRE>
+		<PRE>$(cal)</PRE>
 		<hr />
 		<H3 align = "center">$bottom</H3>
 	</BODY>
 </HTML>"
 fi
+
+
+
