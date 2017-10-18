@@ -1,16 +1,6 @@
 #!/bin/bash
 
 # Program to output a system information page
-
-
-WHITE="\033[37m"
-RED='\033[0;31m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-PINK="\033[35m"
-GREEN="\033[32m"
-BROWN="\033[1;31m"
-NC='\033[0m'
 bold=$(tput bold)
 normal=$(tput sgr0)
 
@@ -24,7 +14,7 @@ bottom="@bart @carlos | SDU Robotics | Linux for Embedded Systems"
 CURRENT_TIME=$(date)
 TIMESTAMP=$(uptime)
 opt="?"
-place="Odense | Funen | Denmark"
+
 
 while getopts ":ha" opt; do
 	case $opt in
