@@ -18,11 +18,12 @@ DIVIDER_FORMAT="\n%$DIVIDER_WIDTH.${DIVIDER_WIDTH}s\n"
 
 system_info()
 {
+  ssys="$(lscpu)"	
   if [ "$is_plain" -eq 0 ]; then
     printf "$DIVIDER_FORMAT" "$DIVIDER"
-    printf "$GENERAL_FORMAT" "System release info" "Function not yet implemented" ""
+    printf "$GENERAL_FORMAT" "System release info" "$ssys" ""
   else
-    printf "$GENERAL_FORMAT" "<h2>System release info</h2>" "<p>Function not yet implemented</p>" ""
+    printf "$GENERAL_FORMAT" "<h2>System release info</h2>" "<pre>" "$ssys" "</pre>" ""
   fi
 }   # end of system_info
 
@@ -120,6 +121,7 @@ _EOF2_
         <body>
         <h1>$TITLE</h1>
         <p>$TIME_STAMP</p>
+	<hr />
         $(system_info)
         $(users_connected)
         $(show_uptime)
