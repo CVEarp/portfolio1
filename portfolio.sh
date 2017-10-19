@@ -142,8 +142,7 @@ usage()
   echo
   echo "Mandatory arguments to long options are mandatory for short options too."
   echo "		-h 	Help. (This)"
-  echo "		-a  	Output as plain text."
-  echo "		-c	Displays information by colors."
+  echo "		-p  	Output as plain text."
   echo 
 }
 
