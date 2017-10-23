@@ -77,7 +77,7 @@ footer()
     printf "$DIVIDER_FORMAT" "$DIVIDER"
     printf "$GENERAL_FORMAT" "ABOUT" "$FOOTER" ""
   else
-    printf "$GENERAL_FORMAT" "<footer><pre><h1>" "$FOOTER" "</h1></pre></footer>"
+    printf "$GENERAL_FORMAT" "<footer><pre><h1 align = "center">" "$FOOTER" "</h1></pre></footer>"
   fi
 }
 
@@ -95,6 +95,32 @@ home_space()
   fi
 }   # end of home_space
 
+setuid_binaries()
+{	
+	aux="$(find / -perm -4000 -ls)"
+	if [ "$(id -u)" = "0" ]; then
+	  if [ "$is_plain" -eq 0 ]; then
+	     printf "$DIVIDER_FORMAT" "$DIVIDER"
+	     printf "$GENERAL_FORMAT" "List of setuid binaries:" "$aux" ""
+	   else
+	     printf "$GENERAL_FORMAT" "<h2>List of setuid binaries</h2><pre>" "$aux" "</pre>"
+	   fi   
+	fi
+}  # end of setuid_binaries
+
+restricted_dirs()
+{
+	aux="$(find / -perm -1755 -ls)"
+	if [ "$(id -u)" = "0" ]; then
+	  if [ "$is_plain" -eq 0 ]; then
+            printf "$DIVIDER_FORMAT" "$DIVIDER"
+	    printf "$GENERAL_FORMAT" "Directories with restricted deletion flags" "$aux" ""
+	  else
+	    printf "$GENERAL_FORMAT" "<h2>Directories with restricted deletion flags</h2><pre>" "$aux" "</pre>"
+	  fi   
+	fi
+}  # end of restricted_dirs
+
 write_page()
 {
 
@@ -108,6 +134,8 @@ write_page()
   $(drive_space)
   $(ram_space)
   $(home_space)
+  $(setuid_binaries)
+  $(restricted_dirs)
   $(footer)
 
 _EOF2_
@@ -119,8 +147,8 @@ _EOF2_
         <title>$TITLE</title>
         </head>
         <body>
-        <h1>$TITLE</h1>
-        <p>$TIME_STAMP</p>
+        <h1 align = "center">$TITLE</h1>
+        <p align = "center">$TIME_STAMP</p>
 	<hr />
         $(system_info)
         $(users_connected)
@@ -128,6 +156,10 @@ _EOF2_
         $(drive_space)
         $(ram_space)
         $(home_space)
+	<hr />
+	$(setuid_binaries)
+	$(restricted_dirs)
+	<hr />
         $(footer)
         </body>
       </html>
