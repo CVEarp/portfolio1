@@ -2,6 +2,9 @@
 
 # A script to produce a system information HTML file
 
+#@Author: Bartolome H. Jimenez Vera
+#@Author: Carlos Viescas Huerta
+
 ##### Constants
 
 TITLE="System Information requested by $HOSTNAME"
@@ -83,7 +86,7 @@ footer()
 
 setuid_binaries()
 {	
-	aux="$(find / -perm -4000 -ls 2>/dev/null)"
+	aux="$(find /bin/ -perm -4000 -ls 2>/dev/null)"
 	if [ "$is_plain" -eq 0 ]; then
 	     printf "$DIVIDER_FORMAT" "$DIVIDER"
 	     printf "$GENERAL_FORMAT" "List of setuid binaries:" "$aux" ""
@@ -169,7 +172,6 @@ while getopts ":hp" opt; do
         ;;
       p)
         is_plain=0
-	$(2>error)
         ;;
 	esac
 done
